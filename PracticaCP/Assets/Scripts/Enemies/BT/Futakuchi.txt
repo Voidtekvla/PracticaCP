@@ -1,0 +1,31 @@
+tree("Root")
+		fallback
+			tree("SeePlayer")
+			tree("HearPlayer")
+			tree("Idle")
+
+
+tree("SeePlayer")
+	// Si percibe al jugador, lo persigue para atacarle
+	while IsVisible
+		repeat
+			sequence
+				moveToPlayer
+				attack
+
+tree("HearPlayer")
+	// Si oye pero no ve al jugador, lo persigue para atacarle
+	while IsHeard
+		repeat
+			sequence
+				moveToSound
+				attack
+
+tree("Idle")
+	// Mientras no percibe al jugador, patrulla
+	while not IsVisible
+		while not IsHeard
+			sequence
+				stayIdle
+				wait
+				chooseDestination

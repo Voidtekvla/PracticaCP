@@ -1,0 +1,22 @@
+tree("Root")
+		fallback
+			tree("ChasePlayer")
+			tree("Idle")
+
+
+tree("ChasePlayer")
+	// Si percibe al jugador, lo persigue para atacarle
+	while IsIn
+		repeat
+			sequence
+				moveToPlayer
+				attack
+
+tree("Idle")
+	// Mientras no percibe al jugador, patrulla
+	while not IsIn
+		sequence
+			stayIdle
+			wait
+			chooseDestination
+				
